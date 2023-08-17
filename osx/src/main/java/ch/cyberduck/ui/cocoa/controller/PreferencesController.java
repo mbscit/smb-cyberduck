@@ -314,7 +314,7 @@ public class PreferencesController extends ToolbarWindowController {
                 this.configureDefaultProtocolHandlerCombobox(this.defaultSFTPHandlerCombobox, Scheme.sftp);
                 break;
             case profiles:
-                profilesPanelController.load();
+                profilesPanelController.load(this);
                 break;
         }
     }
@@ -1925,7 +1925,7 @@ public class PreferencesController extends ToolbarWindowController {
         this.protocolCombobox.setAction(Foundation.selector("protocolComboboxClicked:"));
         this.protocolCombobox.removeAllItems();
         final ProtocolFactory protocols = ProtocolFactory.get();
-        for(Protocol protocol : protocols.find(new DefaultProtocolPredicate(EnumSet.of(Protocol.Type.ftp, Protocol.Type.sftp, Protocol.Type.dav)))) {
+        for(Protocol protocol : protocols.find(new DefaultProtocolPredicate(EnumSet.of(Protocol.Type.ftp, Protocol.Type.sftp, Protocol.Type.dav, Protocol.Type.smb)))) {
             this.addProtocol(protocol);
         }
         this.protocolCombobox.menu().addItem(NSMenuItem.separatorItem());
